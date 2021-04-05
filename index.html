@@ -6,9 +6,13 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Weather App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
 <main>
+  <!-- Added for screen readers -->
   <h1>Responsive Weather App powered by Open Weather A P I</h1>
   <section id="searchBar" class="searchBar">
     <form id="searchBar__form" class="searchBar__form" role="search">
@@ -17,11 +21,12 @@
              autocomplete="off" placeholder="City, State, Country">
       <button id="searchBar__button" class="searchBar__button" title="Submit Location"
               aria-label="Enter Zip Code or City, State and Country to retrieve weather conditions">
-        Submit
+        <i class="fa fa-search"></i>
+        <i class="fas fa-sync fa-spin"></i>
       </button>
     </form>
   </section>
-  <section id="currentForecast" class="currentForecase"></section>
+  <section id="currentForecast" class="currentForecast"></section>
   <nav id="navButtons" class="navButtons"></nav>
   <section id="dailyForecast" class="dailyForecast"></section>
 </main>
