@@ -12,7 +12,7 @@
 </head>
 <body>
 <main>
-  <!-- Added for screen readers -->
+  <!-- heading added for screen readers -->
   <h1>Responsive Weather App powered by Open Weather A P I</h1>
   <section id="searchBar" class="searchBar">
     <form id="searchBar__form" class="searchBar__form" role="search">
@@ -26,7 +26,13 @@
       </button>
     </form>
   </section>
-  <section id="currentForecast" class="currentForecast"></section>
+  
+  <a href="#currentForecast" class="skip-link">Skip to Current Conditions</a>
+  <section id="currentForecast" class="currentForecast" role="region" aria-labelledby="weatherLocation">
+    <h2 id="currentForecast__location" class="currentForecast__location">Current Conditions</h2>
+    <div id="currentForecast__conditions" class="currentForecast__conditions"></div>
+  </section>
+
   <nav id="navButtons" class="navButtons"></nav>
   <section id="dailyForecast" class="dailyForecast"></section>
 </main>
