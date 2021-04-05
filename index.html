@@ -33,7 +33,34 @@
     <div id="currentForecast__conditions" class="currentForecast__conditions"></div>
   </section>
 
-  <nav id="navButtons" class="navButtons"></nav>
+  <a href="#dailyForecast" class="skip-link">Skip to Six Day Forecast</a>
+  <nav id="navButtons" class="navButtons">
+    <button id="getLocation" class="button" title="Get Location" 
+            aria-label="Get the current weather conditions for your current location">
+      <i class="fas fa-map-marker-alt"></i>
+      <i class="fas fa-sync fa-spin"></i>
+    </button>
+    <button id="home" class="button" title="Home Weather" 
+            aria-label="Get the current weather conditions for your home location">
+      <i class="fas fa-home"></i>
+      <i class="fas fa-sync fa-spin"></i>
+    </button>
+    <button id="saveLocation" class="button" title="Save Location" 
+            aria-label="Save the current location as your home location">
+      <i class="fas fa-save"></i>
+      <i class="fas fa-sync fa-spin"></i>
+    </button>
+    <button id="unit" class="button" title="Toggle Measurement Units" 
+            aria-label="Toggle between metric and imperial measurement units">
+      <i class="fas fa-chart-bar"></i>
+      <i class="fas fa-sync fa-spin"></i>
+    </button>
+    <button id="refresh" class="button" title="Refresh Weather" 
+            aria-label="Refresh the current weather conditions">
+      <i class="fas fa-sync-alt"></i>
+      <i class="fas fa-sync fa-spin"></i>
+    </button>
+  </nav>
   <section id="dailyForecast" class="dailyForecast"></section>
 </main>
 </body>
