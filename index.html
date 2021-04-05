@@ -28,7 +28,7 @@
   </section>
   
   <a href="#currentForecast" class="skip-link">Skip to Current Conditions</a>
-  <section id="currentForecast" class="currentForecast" role="region" aria-labelledby="weatherLocation">
+  <section id="currentForecast" class="currentForecast" role="region" aria-labelledby="currentForecast__location">
     <h2 id="currentForecast__location" class="currentForecast__location">Current Conditions</h2>
     <div id="currentForecast__conditions" class="currentForecast__conditions"></div>
   </section>
@@ -61,7 +61,14 @@
       <i class="fas fa-sync fa-spin"></i>
     </button>
   </nav>
-  <section id="dailyForecast" class="dailyForecast"></section>
+
+  <hr>
+  <section id="dailyForecast" class="dailyForecast">
+    <h2 id="dailyForecast__title" class="dailyForecast__title">Six Day Forecast</h2>
+    <div id="dailyForecast__contents" class="dailyForecast__contents"></div>
+  </section>
+
+  <p id="confirmation" class="offscreen" aria-live="assertive"></p>
 </main>
 </body>
 </html>
