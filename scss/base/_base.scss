@@ -1,0 +1,40 @@
+// reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: $background-color;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: $font-color;
+  @include mqw(768px) {
+    font-size: 22px;
+  }
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  @include flexCenter;
+  flex-direction: column;  // sections should be stacked on each other
+  padding: 0.5rem;
+}
+
+main {
+  width: 100%;
+  max-width: 700px;
+  max-height: 1050px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;  // fills out the page with all items taking the same space
+  color: $font-color;
+  background-color: $mask-color;  // darken the main element compared to the background
+  border: 1px solid $bordercolor;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2.5px $shadowcolor;
+}
