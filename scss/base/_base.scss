@@ -38,3 +38,23 @@ main {
   border-radius: 10px;
   box-shadow: 1px 1px 2.5px $shadowcolor;
 }
+
+img {
+  display: block;
+}
+
+hr {
+  width: 90%;
+  margin: auto;
+  border: 1px solid $bordercolor;
+}
+
+// to remove something from the page
+.none {
+  display: none;
+}
+
+// show something that has previously been removed
+.block {
+  display: block;
+}
