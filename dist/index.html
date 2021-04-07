@@ -16,10 +16,10 @@
 <body>
   <main>
     <!-- heading added for screen readers -->
-    <h1>Responsive Weather App powered by Open Weather A P I</h1>
+    <h1 class="offscreen">Responsive Weather App powered by Open Weather A P I</h1>
     <section id="searchBar" class="searchBar">
       <form id="searchBar__form" class="searchBar__form" role="search">
-        <label for="searchBar__text">Enter a new location</label>
+        <label for="searchBar__text" class="offscreen">Enter a new location</label>
         <input id="searchBar__text" class="searchBar__text" type="text" role="searchbox" size="40" autocomplete="off"
           placeholder="City, State, Country">
         <button id="searchBar__button" class="searchBar__button" title="Submit Location"
@@ -66,7 +66,7 @@
 
     <hr>
     <section id="dailyForecast" class="dailyForecast">
-      <h2 id="dailyForecast__title" class="dailyForecast__title">Six Day Forecast</h2>
+      <h2 id="dailyForecast__title" class="dailyForecast__title offscreen">Six Day Forecast</h2>
       <div id="dailyForecast__contents" class="dailyForecast__contents"></div>
     </section>
 
