@@ -16,7 +16,7 @@
   }
 }
 
-@mixin mqMaxWMaxH($size1, $size2) {
+@mixin mqMaxWMinH($size1, $size2) {
   // iPad Pro w: 1024 & iPhone Plus 6/7/8 h 736
   @media only screen and (max-width: $size1) and (max-height: $size2) {
     @content;
