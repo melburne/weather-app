@@ -14,10 +14,10 @@
 </head>
 
 <body>
-  <main>
+  <main class="fade-in">
     <!-- heading added for screen readers -->
     <h1 class="offscreen">Responsive Weather App powered by Open Weather A P I</h1>
-    <section id="searchBar" class="searchBar">
+    <section id="searchBar" class="searchBar fade-in">
       <form id="searchBar__form" class="searchBar__form" role="search">
         <label for="searchBar__text" class="offscreen">Enter a new location</label>
         <input id="searchBar__text" class="searchBar__text" type="text" role="searchbox" size="40" autocomplete="off"
@@ -31,7 +31,8 @@
     </section>
 
     <a href="#currentForecast" class="skip-link">Skip to Current Conditions</a>
-    <section id="currentForecast" class="currentForecast" role="region" aria-labelledby="currentForecast__location">
+    <section id="currentForecast" class="currentForecast fade-in" role="region" 
+             aria-labelledby="currentForecast__location">
       <h2 id="currentForecast__location" class="currentForecast__location">Current Conditions</h2>
       <div id="currentForecast__conditions" class="currentForecast__conditions">
 
@@ -53,7 +54,7 @@
     </section>
 
     <a href="#dailyForecast" class="skip-link">Skip to Six Day Forecast</a>
-    <nav id="navButtons" class="navButtons">
+    <nav id="navButtons" class="navButtons fade-in">
       <button id="getLocation" class="button" title="Get Location"
         aria-label="Get the current weather conditions for your current location">
         <i class="fas fa-map-marker-alt"></i>
@@ -80,8 +81,8 @@
       </button>
     </nav>
 
-    <hr>
-    <section id="dailyForecast" class="dailyForecast">
+    <hr fade-in>
+    <section id="dailyForecast" class="dailyForecast fade-in">
       <h2 id="dailyForecast__title" class="dailyForecast__title offscreen">Six Day Forecast</h2>
       <div id="dailyForecast__contents" class="dailyForecast__contents">
 
