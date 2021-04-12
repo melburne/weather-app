@@ -21,6 +21,12 @@ const initApp = () => {
   const saveButton = document.getElementById("saveLocation");
   saveButton.addEventListener("click", saveLocation);
 
+  const unitButton = document.getElementById("unit");
+  unitButton.addEventListener("click", setUnitPreference);
+
+  const refreshButton = document.getElementById("refresh");
+  refreshButton.addEventListener("click", refreshWeather);
+
   // load weather
   loadWeather();
 };
@@ -45,6 +51,7 @@ const geoError = (errorObject) => {
 };
 
 const geoSuccess = (position) => {
+  // TODO: Check if unit can be added here
   const coordinates = {
     lat: position.coords.latitude,
     lon: position.coords.longitude,
@@ -102,8 +109,21 @@ const saveLocation = () => {
   }
 };
 
+const setUnitPreference = () => {
+  const unitIcon = document.querySelector(".fa-chart-bar");
+  addSpinner(unitIcon);
+  currentLocation.toggleUnit();
+  updateDataAndDisplay(currentLocation);
+};
+
+const refreshWeather = () => {
+  const refreshIcon = document.querySelector(".fa-sync-alt");
+  addSpinner(refreshIcon);
+  updateDataAndDisplay(currentLocation);
+};
+
 const updateDataAndDisplay = async (location) => {
-  console.log(Location);
+  console.log(location);
   // const weatherJson = await getWeatherFromCoordinates(location);
   // if (weatherJson) {
   //   updateDisplay(weatherJson, location);
