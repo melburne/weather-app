@@ -4,7 +4,8 @@ import {
 } from "./dataFunctions.js";
 import {
   addSpinner,
-  displayError
+  displayError,
+  updateScreenReaderConfirmation
 } from "./domFunctions.js";
 import CurrentLocation from "./CurrentLocation.js";
 const currentLocation = new CurrentLocation();
@@ -16,6 +17,9 @@ const initApp = () => {
 
   const homeButton = document.getElementById("home");
   homeButton.addEventListener("click", loadWeather);
+
+  const saveButton = document.getElementById("saveLocation");
+  saveButton.addEventListener("click", saveLocation);
 
   // load weather
   loadWeather();
@@ -81,7 +85,22 @@ const displayHomeLocationWeather = (home) => {
     setLocationObject(currentLocation, coordinates);
     updateDataAndDisplay(currentLocation);
   }
-}
+};
+
+const saveLocation = () => {
+  if (currentLocation.getLat() && currentLocation.getLon()) {
+    const saveIcon = document.querySelector(".fa-save");
+    addSpinner(saveIcon);
+    const location = {
+      lat: currentLocation.getLat(),
+      lon: currentLocation.getLon(),
+      name: currentLocation.getName(),
+      unit: currentLocation.getUnit()
+    };
+    localStorage.setItem("defaultWeatherLocation", JSON.stringify(location));
+    updateScreenReaderConfirmation(`Saved ${currentLocation.getName()} as home location.`);
+  }
+};
 
 const updateDataAndDisplay = async (location) => {
   console.log(Location);
