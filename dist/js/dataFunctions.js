@@ -12,7 +12,21 @@ export const setLocationObject = (location, coordinates) => {
 
 export const getHomeLocation = () => {
   return localStorage.getItem("defaultWeatherLocation");
-}
+};
+
+export const getWeatherFromCoords = async (location) => {
+  const lat = location.getLat();
+  const lon = location.getLon();
+  const unit = location.getUnit();
+  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=${unit}&appid=${WEATHER_API_KEY}`;
+  try {
+    const weatherStream = await fetch(url);
+    const weatherJson = await weatherStream.json();
+    return weatherJson;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const getCoordsFromApi = async (entryText, units) => {
   const numberRegex = /^\d+$/g;
@@ -35,4 +49,4 @@ export const cleanText = (text) => {
   // replace two or more spaces in the middle with one space
   const cleanText = text.replaceAll(removeMiddleSpacesRegex, " ").trim();
   return cleanText;
-}
+};
