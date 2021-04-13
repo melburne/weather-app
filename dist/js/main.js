@@ -1,7 +1,8 @@
 import {
   setLocationObject,
   getHomeLocation,
-  cleanText
+  cleanText,
+  getCoordsFromApi
 } from "./dataFunctions.js";
 import {
   setPlaceholderText,
@@ -144,12 +145,20 @@ const submitNewLocation = async(event) => {
   const locationIcon = document.querySelector(".fa-search");
   addSpinner(locationIcon);
   const coordinatesData = await getCoordsFromApi(entryText, currentLocation.getUnit());
-  if ( coordinatesData.code === 200) {
-    const coordinates = {};
-    setLocationObject(currentLocation, coordinates);
-    updateDataAndDisplay(currentLocation);
+  if (coordinatesData) {
+    if (coordinatesData.cod === 200) {
+      const coordinates = {
+        lat: coordinatesData.coord.lat,
+        lon: coordinatesData.coord.lon,
+        name: coordinatesData.sys.country ? `${coordinatesData.name}, ${coordinatesData.sys.country}` : coordinatesData.name
+      };
+      setLocationObject(currentLocation, coordinates);
+      updateDataAndDisplay(currentLocation);
+    } else {
+      displayApiError(coordinatesData);
+    }
   } else {
-    displayApiError(coordinatesData);
+    displayError("Connection error", "Connection error");
   }
 }
 
