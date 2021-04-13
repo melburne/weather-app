@@ -55,6 +55,10 @@ export const updateDisplay = (weatherJson, location) => {
   updateScreenReaderConfirmation(screenReaderWeather);
   updateWeatherLocationHeader(location.getName());
 
+  const currentConditionsArray = createCurrentConditionsDivs(weatherJson, location.getUnit());
+
+  setFocusOnSearch();
+
   // show weather (toggle adds .fade-in back to the elements)
   fadeDisplay();
 };
@@ -121,4 +125,69 @@ const buildScreenReaderWeather = (weatherJson, location) => {
   const tempUnit = unit === "imperial" ? "Fahrenheit" : "Celsius";
 
   return `${weatherJson.current.weather[0].description} and ${Math.round(Number(weatherJson.current.temp))}°${tempUnit} in ${locationName}`
-}
+};
+
+const setFocusOnSearch = () => {
+  document.getElementById("searchBar__text").focus();
+};
+
+const createCurrentConditionsDivs = (weatherJson, unit) => {
+  const tempUnit = unit === "imperial" ? "F" : "C";
+  const windUnit = unit === "imperial" ? "mph" : "m/s";
+
+  const icon = createMainImgDiv(weatherJson.current.weather[0].icon, weatherJson.current.weather[0].description);
+
+  const temp = createElement("div", "temp", `${Math.round(Number(weatherJson.current.temp))}°`);
+
+  const properDescription = toProperCase(weatherJson.current.weather[0].description);
+  const description = createElement("div", "desc", properDescription);
+
+  const feelsLIke = createElement("div", "feels", `Feels like ${Math.round(Number(weatherJson.current.feels_like))}°`);
+
+  const maxTemp = createElement("div", "maxtemp", `High ${Math.round(Number(weatherJson.daily[0].temp.max))}°`);
+  
+  const minTemp = createElement("div", "mintemp", `Low ${Math.round(Number(weatherJson.daily[0].temp.min))}°`);
+
+  const humidity = createElement("div", "humidity", `Humidity ${weatherJson.current.humidity}%`);
+
+  const wind = createElement("div", "wind", `Wind ${Math.round(Number(weatherJson.current.wind_speed))} ${windUnit}`);
+
+  return [icon, temp, description, feelsLIke, maxTemp, minTemp, humidity, wind];
+};
+
+const createMainImgDiv = (icon, altText) => {
+  const iconDiv = createElement("div", "icon");
+  iconDiv.id = "icon";
+
+  const faIcon = translateIconToFontAwesome(icon);
+  faIcon.araiHidden = true;
+  faIcon.title = altText;
+
+  iconDiv.appendChild(faIcon);
+
+  return iconDiv;
+};
+
+const createElement = (elementType, divClassName, divText, unit) => {
+  const div = document.createElement(elementType);
+
+  div.className = divClassName;
+
+  if (divText) {
+    div.textContent = divText;
+  }
+
+  if (divClassName === "temp") {
+    const unitDiv = document.createElement("div");
+    unitDiv.classList.add("unit");
+    unitDiv.textContent = unit;
+    div.appendChild(unitDiv);
+  }
+
+  return div;
+};
+
+// const translateIconToFontAwesome = (icon) => {
+//   const i = document.createElement("i");
+//   const fi
+// };
