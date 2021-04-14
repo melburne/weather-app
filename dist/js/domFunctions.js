@@ -1,6 +1,8 @@
 export const setPlaceholderText = () => {
   const input = document.getElementById("searchBar__text");
-  window.innerWidth < 400 ? (input.placeholder = "City, State, Country") : (input.placeholder = "City, State, Country or Zip code");
+  window.innerWidth < 400
+    ? (input.placeholder = "City, State, Country")
+    : (input.placeholder = "City, State, Country or Zip code");
 };
 
 export const addSpinner = (element) => {
@@ -35,7 +37,20 @@ const toProperCase = (text) => {
 
 const updateWeatherLocationHeader = (message) => {
   const h2 = document.getElementById("currentForecast__location");
-  h2.textContent = message;
+
+  if (message.indexOf("Lat:") !== -1 && message.indexOf("Lon:") !== -1) {
+    const messageArray = message.split(" ");
+    const mapArray = messageArray.map((msg) => {
+      return msg.replace(":", ": ");
+    });
+
+    const lat = mapArray[0].indexOf("-") === -1 ? mapArray[0].slice(0, 10) : mapArray[0].slice(0, 11);
+    const lon = mapArray[1].indexOf("-") === -1 ? mapArray[1].slice(0, 10) : mapArray[1].slice(0, 11);
+
+    h2.textContent = `${lat} • ${lon}`;
+  } else {
+    h2.textContent = message;
+  }
 };
 
 export const updateScreenReaderConfirmation = (message) => {
@@ -99,7 +114,7 @@ const getWeatherClass = (icon) => {
     10: "rain",
     11: "rain",
     13: "snow",
-    50: "fog"
+    50: "fog",
   };
 
   let weatherClass;
@@ -116,7 +131,7 @@ const setBackgroundImage = (weatherClass) => {
   document.documentElement.classList.add(weatherClass);
   // remove img if it does not match the weather class determined in #getWeatherClass
   document.documentElement.classList.forEach((img) => {
-    if (img !== weatherClass) document.documentElement.classList.remove(img)
+    if (img !== weatherClass) document.documentElement.classList.remove(img);
   });
 };
 
@@ -125,7 +140,9 @@ const buildScreenReaderWeather = (weatherJson, location) => {
   const unit = location.getUnit();
   const tempUnit = unit === "imperial" ? "Fahrenheit" : "Celsius";
 
-  return `${weatherJson.current.weather[0].description} and ${Math.round(Number(weatherJson.current.temp))}°${tempUnit} in ${locationName}`
+  return `${weatherJson.current.weather[0].description} and ${Math.round(
+    Number(weatherJson.current.temp)
+  )}°${tempUnit} in ${locationName}`;
 };
 
 const setFocusOnSearch = () => {
@@ -146,7 +163,7 @@ const createCurrentConditionsDivs = (weatherJson, unit) => {
   const feelsLIke = createElement("div", "feels", `Feels like ${Math.round(Number(weatherJson.current.feels_like))}°`);
 
   const maxTemp = createElement("div", "maxtemp", `High ${Math.round(Number(weatherJson.daily[0].temp.max))}°`);
-  
+
   const minTemp = createElement("div", "mintemp", `Low ${Math.round(Number(weatherJson.daily[0].temp.min))}°`);
 
   const humidity = createElement("div", "humidity", `Humidity ${weatherJson.current.humidity}%`);
@@ -241,7 +258,7 @@ const translateIconToFontAwesome = (icon) => {
 
 const displayCurrentConditions = (currentConditionsArray) => {
   const currentConditionsContainer = document.getElementById("currentForecast__conditions");
-  currentConditionsArray.forEach(cc => {
+  currentConditionsArray.forEach((cc) => {
     currentConditionsContainer.appendChild(cc);
   });
 };
