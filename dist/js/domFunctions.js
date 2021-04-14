@@ -127,6 +127,8 @@ const getWeatherClass = (icon) => {
   } else {
     weatherClass = "night";
   }
+
+  return weatherClass;
 };
 
 const setBackgroundImage = (weatherClass) => {
