@@ -10,7 +10,8 @@ import {
   addSpinner,
   displayError,
   updateScreenReaderConfirmation,
-  displayApiError
+  displayApiError,
+  updateDisplay
 } from "./domFunctions.js";
 import CurrentLocation from "./CurrentLocation.js";
 const currentLocation = new CurrentLocation();

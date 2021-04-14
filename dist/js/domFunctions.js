@@ -56,6 +56,7 @@ export const updateDisplay = (weatherJson, location) => {
   updateWeatherLocationHeader(location.getName());
 
   const currentConditionsArray = createCurrentConditionsDivs(weatherJson, location.getUnit());
+  displayCurrentConditions(currentConditionsArray);
 
   setFocusOnSearch();
 
@@ -236,4 +237,11 @@ const translateIconToFontAwesome = (icon) => {
   }
 
   return i;
+};
+
+const displayCurrentConditions = (currentConditionsArray) => {
+  const currentConditionsContainer = document.getElementById("currentForecast__conditions");
+  currentConditionsArray.forEach(cc => {
+    currentConditionsContainer.appendChild(cc);
+  });
 };
