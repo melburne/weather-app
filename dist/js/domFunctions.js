@@ -73,6 +73,8 @@ export const updateDisplay = (weatherJson, location) => {
   const currentConditionsArray = createCurrentConditionsDivs(weatherJson, location.getUnit());
   displayCurrentConditions(currentConditionsArray);
 
+  displaySixDayForecast(weatherJson);
+
   setFocusOnSearch();
 
   // show weather (toggle adds .fade-in back to the elements)
@@ -261,4 +263,50 @@ const displayCurrentConditions = (currentConditionsArray) => {
   currentConditionsArray.forEach((cc) => {
     currentConditionsContainer.appendChild(cc);
   });
+};
+
+const displaySixDayForecast = (weatherJson) => {
+  for (let i = 1; i <= 6; i++) {
+    const dailyForecastArray = createDailyForecastDivs(weatherJson.daily[i]);
+    displayDailyForecast(dailyForecastArray);
+  }
+};
+
+const createDailyForecastDivs = (dayWeather) => {
+  const dayAbbreviationText = getDayAbbreviation(dayWeather.dt);
+  const dayAbbreviation = createElement("p", "dayAbbreviation", dayAbbreviationText);
+
+  const dayIcon = createDailyForecastIcon(dayWeather.weather[0].icon, dayWeather.weather[0].description);
+  const dayHigh = createElement("p", "dayHigh", `${Math.round(Number(dayWeather.temp.max))}°`);
+  const dayLow = createElement("p", "dayLow", `${Math.round(Number(dayWeather.temp.min))}°`);
+
+  return [dayAbbreviation, dayIcon, dayHigh, dayLow];
+};
+
+const getDayAbbreviation = (data) => {
+  const date = new Date(data * 1000);
+  const utcString = date.toUTCString();
+  return utcString.slice(0, 3).toUpperCase();
+};
+
+const createDailyForecastIcon = (icon, altText) => {
+  const img = document.createElement("img");
+  if (window.innerWidth < 768 || window.innerHeight < 1025) {
+    img.src = `https://openweathermap.org/img/wn/${icon}.png`;
+  } else {
+    img.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+  }
+  img.alt = altText;
+
+  return img;
+};
+
+const displayDailyForecast = (dailyForecastArray) => {
+  const dayDiv = createElement("div", "forecastDay");
+  dailyForecastArray.forEach((e) => {
+    dayDiv.appendChild(e);
+  });
+
+  const dailyForecastContainer = document.getElementById("dailyForecast__contents");
+  dailyForecastContainer.appendChild(dayDiv);
 };
