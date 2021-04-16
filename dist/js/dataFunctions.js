@@ -15,7 +15,7 @@ export const getHomeLocation = () => {
 };
 
 export const getWeatherFromCoords = async (location) => {
-  const lat = location.getLat();
+  /* const lat = location.getLat();
   const lon = location.getLon();
   const unit = location.getUnit();
   const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=${unit}&appid=${WEATHER_API_KEY}`;
@@ -25,6 +25,23 @@ export const getWeatherFromCoords = async (location) => {
     return weatherJson;
   } catch (error) {
     console.error(error);
+  } */
+
+  const urlData = {
+    lon: location.getLon(),
+    lat: location.getLat(),
+    unit: location.getUnit(),
+  };
+
+  try {
+    const weatherStream = await fetch("./.netlify/functions/get_weather", {
+      method: "POST",
+      body: JSON.stringify(urlData),
+    });
+    const weatherJson = await weatherStream.json();
+    return weatherJson;
+  } catch (error) {
+    console.log(error);
   }
 };
 
