@@ -1,5 +1,3 @@
-const WEATHER_API_KEY = "";
-
 export const setLocationObject = (location, coordinates) => {
   const { lat, lon, name, unit } = coordinates;
   location.setLat(lat);
@@ -41,12 +39,12 @@ export const getWeatherFromCoords = async (location) => {
     const weatherJson = await weatherStream.json();
     return weatherJson;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
 export const getCoordsFromApi = async (entryText, units) => {
-  const numberRegex = /^\d+$/g;
+  /* const numberRegex = /^\d+$/g;
   const flag = numberRegex.test(entryText) ? "zip" : "q";
   const url = `https://api.openweathermap.org/data/2.5/weather?${flag}=${entryText}&units=${units}&appid=${WEATHER_API_KEY}`;
   const encodedUrl = encodeURI(url);
@@ -58,6 +56,22 @@ export const getCoordsFromApi = async (entryText, units) => {
     return jsonData;
   } catch (error) {
     console.error(error.stack);
+  } */
+
+  const urlData = {
+    text: entryText,
+    units: units,
+  };
+
+  try {
+    const dataStream = await fetch("./.netlify/functions/get_coords", {
+      method: "POST",
+      body: JSON.stringify(urlData),
+    });
+    const jsonData = await dataStream.json();
+    return jsonData;
+  } catch (error) {
+    console.error(error);
   }
 };
 
