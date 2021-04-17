@@ -159,7 +159,7 @@ const createCurrentConditionsDivs = (weatherJson, unit) => {
 
   const icon = createMainImgDiv(weatherJson.current.weather[0].icon, weatherJson.current.weather[0].description);
 
-  const temp = createElement("div", "temp", `${Math.round(Number(weatherJson.current.temp))}°`);
+  const temp = createElement("div", "temp", `${Math.round(Number(weatherJson.current.temp))}°`, tempUnit);
 
   const properDescription = toProperCase(weatherJson.current.weather[0].description);
   const description = createElement("div", "desc", properDescription);

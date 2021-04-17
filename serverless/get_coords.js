@@ -18,12 +18,12 @@ exports.handler = async (event, context) => {
     const jsonData = await dataStream.json();
     return {
       statusCode: 200,
-      body: JSON.stringify(jsonData)
+      body: JSON.stringify(jsonData),
     };
   } catch (error) {
     return {
       statusCode: 422,
-      body: error.stack
-    }
+      body: error.stack,
+    };
   }
 };
