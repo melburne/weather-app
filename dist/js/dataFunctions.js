@@ -28,7 +28,7 @@ export const getWeatherFromCoords = async (location) => {
   const urlData = {
     lon: location.getLon(),
     lat: location.getLat(),
-    unit: location.getUnit(),
+    units: location.getUnit(),
   };
   console.log(urlData);
 
