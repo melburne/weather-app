@@ -71,7 +71,6 @@ const geoSuccess = (position) => {
   };
 
   setLocationObject(currentLocation, coordinates);
-  // console.log(currentLocation);
   updateDataAndDisplay(currentLocation);
 };
 
@@ -165,7 +164,6 @@ const submitNewLocation = async (event) => {
 
 const updateDataAndDisplay = async (location) => {
   const weatherJson = await getWeatherFromCoords(location);
-  console.log(weatherJson);
   if (weatherJson) {
     updateDisplay(weatherJson, location);
   }
