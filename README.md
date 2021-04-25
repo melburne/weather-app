@@ -1,6 +1,6 @@
 # Responsive Weather App
 
-Responsive mobile-first weather app powered by [Open Weather API](https://openweathermap.org/api). The app adapts to the screen size to display weather information without crowding the screen.
+Responsive mobile-first weather app powered by [Open Weather API](https://openweathermap.org/api).
 
 
 ## Features
@@ -8,8 +8,9 @@ Responsive mobile-first weather app powered by [Open Weather API](https://openwe
 - Search for the weather by entering the name of a City, State Country or Zip Code
 - Get weather for current location
 - Save a location
-- Switch between metric and imperial units for weather.
+- Switch between metric and imperial units for weather
 - Six day weather forecast
+- Dynamic icons and background based on the weather
 
 
 ![Scattered Clouds Screenshot](./screenshots/cloudy_screenshot.png)
@@ -17,9 +18,4 @@ Responsive mobile-first weather app powered by [Open Weather API](https://openwe
 
 ## Requirements
 
-
-## Build
-
-
-## Deploy
-
+- Open Weather API Key
