@@ -2,7 +2,7 @@
 
 Responsive mobile-first weather app powered by [Open Weather API](https://openweathermap.org/api).
 
-![Scattered Clouds Screenshot](./screenshots/cloudy_screenshot.png)
+![Scattered Clouds Screenshot](./screenshots/overcast_clouds.png)
 
 
 ## Features
@@ -22,10 +22,10 @@ Responsive mobile-first weather app powered by [Open Weather API](https://openwe
 
 ## Deploy on Netlify
 
-Link your GitHub repository with Netlify and add the Open Weather API Key as an environment variable with the key
-WEATHER_API_KEY.
+Link the GitHub repository with Netlify and add the Open Weather API Key as an environment variable with the key
+`WEATHER_API_KEY`.
 
-You can test out changes locally using the Netlify CLI
+Test out changes locally using the Netlify CLI
 ```
 npm i netlify-cli -g
 netlify-cli link
