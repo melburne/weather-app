@@ -14,6 +14,7 @@ import {
   updateDisplay,
 } from "./domFunctions.js";
 import CurrentLocation from "./CurrentLocation.js";
+
 const currentLocation = new CurrentLocation();
 
 const initApp = () => {
@@ -63,7 +64,6 @@ const geoError = (errorObject) => {
 };
 
 const geoSuccess = (position) => {
-  // TODO: Check if unit can be added here
   const coordinates = {
     lat: position.coords.latitude,
     lon: position.coords.longitude,
